@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Letter for Safa ♡</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg,#fff0f5,#fbd1e2,#ffe8ef);
+    font-family: 'Poppins',sans-serif;
+    color: #82465e;
+    overflow-x: hidden;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+}
+
+.page {
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+}
+
+#opening {
+    animation: fadeIn 1.5s ease;
+}
+
+.envelope {
+    font-size: 100px;
+    animation: floating 3s infinite ease-in-out;
+}
+
+h1 {
+    font-family: 'Playfair Display',serif;
+    font-size: 43px;
+    color: #c35d85;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.subtitle {
+    margin: 15px 0 30px;
+    color: #a8788b;
+    font-size: 14px;
+    font-style: italic;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 30px;
+    font-family: 'Poppins',sans-serif;
+    transition: .3s;
+}
+
+.open-btn {
+    background: #d8759c;
+    color: white;
+    box-shadow: 0 5px 20px #e9a9c2;
+}
+
+.open-btn:hover {
+    transform: translateY(-4px);
+    background: #c95d88;
+}
+
+#letter,#ending,#finalSecret {
+    display: none;
+    animation: fadeIn 1s ease;
+}
+
+.letter-card {
+    background: rgba(255,255,255,.88);
+    border: 1px solid white;
+    border-radius: 24px;
+    padding: 35px 25px;
+    box-shadow: 0 15px 45px rgba(185,91,126,.13);
+}
+
+.small-title {
+    font-family: 'Playfair Display',serif;
+    font-size: 31px;
+    color: #c35d85;
+}
+
+.intro {
+    font-size: 12px;
+    color: #bd8b9e;
+    font-style: italic;
+    margin: 12px 0 25px;
+}
+
+.progress {
+    color: #c77b99;
+    font-size: 11px;
+    margin-bottom: 17px;
+}
+
+.message {
+    background: #fff4f8;
+    border: 1px solid #f8d5e3;
+    border-radius: 16px;
+    padding: 18px;
+    margin: 13px 0;
+    text-align: left;
+    transition: .3s;
+}
+
+.message.locked {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.message.available {
+    cursor: pointer;
+}
+
+.message.available:hover {
+    transform: translateY(-3px);
+    background: #ffeaf2;
+}
+
+.message.open {
+    background: white;
+    border-color: #e9b2c8;
+}
+
+.message-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #bd6487;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.message-content {
+    display: none;
+    font-family: 'Playfair Display',serif;
+    font-size: 17px;
+    line-height: 1.95;
+    color: #795063;
+    margin-top: 16px;
+    animation: fadeIn .8s ease;
+}
+
+.message.open .message-content {
+    display: block;
+}
+
+.message-status {
+    font-size: 11px;
+    color: #c78ba2;
+    margin-top: 7px;
+}
+
+.footer {
+    margin-top: 25px;
+    font-size: 11px;
+    color: #c18ca1;
+}
+
+#ending {
+    padding: 25px 10px;
+}
+
+.end-heart {
+    font-size: 80px;
+    animation: heartbeat 1.3s infinite;
+}
+
+#ending h2 {
+    font-family: 'Playfair Display',serif;
+    font-size: 35px;
+    color: #c35d85;
+    margin: 20px 0;
+}
+
+#ending p {
+    font-family: 'Playfair Display',serif;
+    font-size: 20px;
+    line-height: 1.9;
+    color: #92536e;
+}
+
+.last-quote {
+    font-family: 'Playfair Display',serif;
+    font-style: italic;
+    color: #bd6487;
+    font-size: 21px;
+    line-height: 1.8;
+    margin: 30px auto;
+    max-width: 450px;
+}
+
+.secret-btn {
+    background: #d8759c;
+    color: white;
+    margin-top: 15px;
+}
+
+#finalSecret {
+    padding: 25px;
+}
+
+.secret-card {
+    background: rgba(255,255,255,.9);
+    padding: 40px 25px;
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(185,91,126,.15);
+    border: 1px solid white;
+}
+
+.secret-card h2 {
+    font-family: 'Playfair Display',serif;
+    font-size: 30px;
+    color: #c35d85;
+    margin: 20px 0;
+}
+
+.secret-card p {
+    font-family: 'Playfair Display',serif;
+    font-size: 19px;
+    line-height: 2;
+    color: #795063;
+}
+
+.signature {
+    margin-top: 35px;
+    font-family: 'Playfair Display',serif;
+    font-style: italic;
+    font-size: 21px;
+    color: #c35d85;
+}
+
+.floating-heart {
+    position: fixed;
+    bottom: -30px;
+    pointer-events: none;
+    color: #e99ab8;
+    animation: floatUp 8s linear forwards;
+    z-index: 0;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;transform:translateY(15px)}
+    to {opacity:1;transform:translateY(0)}
+}
+
+@keyframes floating {
+    0%,100% {transform:translateY(0)}
+    50% {transform:translateY(-12px)}
+}
+
+@keyframes heartbeat {
+    0%,100% {transform:scale(1)}
+    50% {transform:scale(1.15)}
+}
+
+@keyframes floatUp {
+    to {
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+@media(max-width:480px) {
+    h1 {font-size:35px}
+    .letter-card {padding:25px 16px}
+    .message-content {font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="page">
+
+<!-- OPENING -->
+
+<section id="opening">
+    <div class="envelope">💌</div>
+
+    <h1>For Safa</h1>
+
+    <p class="subtitle">
+        Bir küçük mektup, kalbimden sana...
+    </p>
+
+    <button class="open-btn" onclick="openLetter()">
+        Open your letter ♡
+    </button>
+
+    <div class="footer">made with love ♡</div>
+</section>
+
+
+<!-- LETTER -->
+
+<section id="letter">
+
+<div class="letter-card">
+
+    <div class="small-title">Merhaba Safa ♡</div>
+
+    <p class="intro">
+        Senin için yazdığım küçük bir mektup...
+    </p>
+
+    <p class="progress" id="progress">
+        0 / 6 little secrets opened
+    </p>
+
+    <div id="messages">
+
+        <div class="message available" onclick="reveal(this,0)">
+            <div class="message-heading">
+                <span>01. A little wish 🌷</span>
+                <span>♡</span>
+            </div>
+            <div class="message-status">Click to open</div>
+            <div class="message-content">
+                Merhaba Safa, seninle tanıştığıma gerçekten çok sevindim.
+                Umarım her zaman mutlu ve sağlıklı olursun.
+                Allah attığın her adımı bereketlendirsin.
+            </div>
+        </div>
+
+        <div class="message locked" onclick="reveal(this,1)">
+            <div class="message-heading">
+                <span>02. Your beautiful eyes ✨</span>
+                <span>🔒</span>
+            </div>
+            <div class="message-status">Open the previous message first</div>
+            <div class="message-content">
+                Çok tatlısın. Gözlerin gece gökyüzündeki yıldızlar gibi parlıyor.
+                Gözlerinde ne ikiyüzlülük ne de yalan var;
+                aksine, derinlerde bir huzur saklı.
+                <br><br>
+                Ve orada güzelliğin bir sırrı gizli...
+            </div>
+        </div>
+
+        <div class="message locked" onclick="reveal(this,2)">
+            <div class="message-heading">
+                <span>03. A peaceful feeling 🕊️</span>
+                <span>🔒</span>
+            </div>
+            <div class="message-status">Open the previous message first</div>
+            <div class="message-content">
+                Sözlerinle bütün üzüntülerim ve kaygılarım sona eriyor.
+                Kalbim yeniden umudun var olduğuna inanmaya başlıyor.
+            </div>
+        </div>
+
+        <div class="message locked" onclick="reveal(this,3)">
+            <div class="message-heading">
+                <span>04. A little hope 🌸</span>
+                <span>🔒</span>
+            </div>
+            <div class="message-status">Open the previous message first</div>
+            <div class="message-content">
+                İkimiz de biraz çocuk gibiyiz.
+                Umarım hayatın boyunca Allah'ın bereketi üzerinde olur.
+            </div>
+        </div>
+
+        <div class="message locked" onclick="reveal(this,4)">
+            <div class="message-heading">
+                <span>05. My favorite moment 💗</span>
+                <span>🔒</span>
+            </div>
+            <div class="message-status">Open the previous message first</div>
+            <div class="message-content">
+                Canım sıkıldığında seni görmek en sevdiğim şeylerden biri.
+                Çünkü seni gördüğümde kendimi huzurlu ve güvende hissediyorum.
+            </div>
+        </div>
+
+        <div class="message locked" onclick="reveal(this,5)">
+            <div class="message-heading">
+                <span>06. One last thing 💌</span>
+                <span>🔒</span>
+            </div>
+            <div class="message-status">Open the previous message first</div>
+            <div class="message-content">
+                Bazı insanlar hayatımıza sessizce girer
+                ama kalbimizde güzel izler bırakır.
+                <br><br>
+                Seninle tanışmış olmak benim için güzel bir tesadüf.
+                ♡
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Take your time. Every word is written with warmth. ♡
+    </div>
+
+</div>
+</section>
+
+
+<!-- ENDING -->
+
+<section id="ending">
+
+    <div class="end-heart">💗</div>
+
+    <h2>That's all, Safa...</h2>
+
+    <p>
+        Umarım bu küçük mektup<br>
+        yüzünde güzel bir gülümseme bırakmıştır.
+        <br><br>
+        Kendine iyi bak, olur mu?
+        <br>
+        Her zaman mutlu ol. ♡
+    </p>
+
+    <div class="last-quote">
+        "Some words are difficult to say,
+        so I chose to write them instead."
+    </div>
+
+    <button class="secret-btn" onclick="showSecret()">
+        Open my last little secret ♡
+    </button>
+
+</section>
+
+
+<!-- FINAL SECRET -->
+
+<section id="finalSecret">
+
+    <div class="secret-card">
+
+        <div class="end-heart">🌷</div>
+
+        <h2>One last little secret...</h2>
+
+        <p>
+            Belki sana söyleyemediğim
+            bazı şeyler vardır.
+            <br><br>
+            Ama şunu bilmeni isterim:
+            <br><br>
+            Hayatıma kattığın o küçük mutluluk
+            benim için gerçekten çok değerli.
+            <br><br>
+            İyi ki tanışmışız, Safa.
+        </p>
+
+        <div class="signature">
+            With all my warmest wishes, ♡
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+</div>
+
+
+<script>
+
+let opened = 0;
+
+function openLetter() {
+    document.getElementById("opening").style.display = "none";
+    document.getElementById("letter").style.display = "block";
+    window.scrollTo(0,0);
+}
+
+function reveal(element,index) {
+
+    if (element.classList.contains("open")) return;
+
+    if (index !== opened) return;
+
+    element.classList.add("open");
+
+    element.classList.remove("available");
+
+    element.querySelector(".message-status").innerText =
+        "A little message from my heart ♡";
+
+    element.querySelector(".message-heading span:last-child").innerText = "♥";
+
+    opened++;
+
+    document.getElementById("progress").innerText =
+        opened + " / 6 little secrets opened";
+
+    const messages = document.querySelectorAll(".message");
+
+    if (opened < messages.length) {
+
+        messages[opened].classList.remove("locked");
+        messages[opened].classList.add("available");
+
+        messages[opened].querySelector(".message-heading span:last-child").innerText = "♡";
+
+        messages[opened].querySelector(".message-status").innerText =
+            "Click to open your next message";
+
+    }
+
+    if (opened === 6) {
+
+        setTimeout(() => {
+            document.getElementById("letter").style.display = "none";
+            document.getElementById("ending").style.display = "block";
+            window.scrollTo(0,0);
+        },1800);
+
+    }
+
+}
+
+function showSecret() {
+
+    document.getElementById("ending").style.display = "none";
+
+    document.getElementById("finalSecret").style.display = "block";
+
+    window.scrollTo(0,0);
+
+}
+
+
+// Floating hearts
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "floating-heart";
+
+    heart.innerHTML = ["♡","💗","💕","♥","🌸"][
+        Math.floor(Math.random()*5)
+    ];
+
+    heart.style.left = Math.random()*100 + "vw";
+
+    heart.style.fontSize = (15+Math.random()*20)+"px";
+
+    heart.style.animationDuration = (5+Math.random()*5)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),10000);
+
+}
+
+setInterval(createHeart,800);
+
+</script>
+
+</body>
+</html>
